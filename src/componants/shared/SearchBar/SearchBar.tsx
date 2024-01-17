@@ -9,6 +9,7 @@ const Searchbar = () => {
 
     const handleSearch = (e : React.FormEvent) => {
         e.preventDefault();
+        navigate(`/search?q=${search}`);
     }
 
     return (

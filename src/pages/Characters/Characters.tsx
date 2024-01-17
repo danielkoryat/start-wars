@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./Characters.css";
-import { getCharacters } from "../../api/actions/chracters";
-import { Character } from "../../api/actions/chracters";
+import useFetch from "../../hooks/useFetch";
+import { API_ENDPOINTS } from "../../api/apiEndpoins";
+import Character from "../../types/charcterType";
+import ErrorMessage from "../../componants/shared/ErrorMessage ";
+
+
 
 const CharactersPage: React.FC = (): React.ReactElement => {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    data = { results: [] },
+    loading,
+    error,
+  } = useFetch<Character>(API_ENDPOINTS.CHARACTER);
 
-  useEffect(() => {
-    const fetchCharacter = async () => {
-      setLoading(true);
-      const characters = await getCharacters();
-      console.log(characters);
-      setCharacters(characters);
-      setLoading(false);
-    };
-    fetchCharacter();
-  }, []);
+  const characters = data?.results;
 
   return (
     <div>
@@ -25,8 +23,10 @@ const CharactersPage: React.FC = (): React.ReactElement => {
         <div className="character-list">
           {loading ? (
             <p>Loading...</p>
+          ) : error ? (
+            <ErrorMessage message="Something went wrong" />
           ) : (
-            characters.map((character, index) => (
+            characters?.map((character, index) => (
               <div className="character-card" key={index}>
                 <h2>{character.name}</h2>
                 <p>
