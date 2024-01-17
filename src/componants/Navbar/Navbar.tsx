@@ -1,9 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import "./Navbar.css"
+import "./Navbar.css";
+import Searchbar from "../shared/SearchBar/SearchBar";
 
 const Navbar: React.FC = (): React.ReactElement => {
   const navigate = useNavigate();
+
+
+  const handleSearch = (e : React.FormEvent) => {
+    e.preventDefault();
+     
+  };
+
 
   const routes = [
     { lable: "Home", path: "/" },
@@ -15,15 +23,18 @@ const Navbar: React.FC = (): React.ReactElement => {
   return (
     <nav className="navbar">
       <ul className="navbar__list">
-        {routes.map((route) => (
+        {routes.map((route, index) => (
           <li
             className="navbar__item"
-            key={route.lable}
+            key={index}
             onClick={() => navigate(route.path)}
           >
             {route.lable}
           </li>
         ))}
+        <li className="navbar__item">
+          <Searchbar />
+        </li>
       </ul>
     </nav>
   );

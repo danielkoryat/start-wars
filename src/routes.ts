@@ -9,7 +9,11 @@ const routes = [
   {
     path: "/characters",
     element: Characters,
+  },
+  {
+    path: "/search",
   }
+
 ];
 
 export default routes;

@@ -1,5 +1,5 @@
 .env
-
+auto_commiter.py
 # Logs
 logs
 *.log

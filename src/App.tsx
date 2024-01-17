@@ -2,11 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./componants/Navbar/Navbar";
 import './App.css'
 import routes from "./routes";
-import dotenv from 'dotenv';
 
 
 function App() {
-  dotenv.config();
 
   return (
     <>
@@ -15,7 +13,7 @@ function App() {
             <Navbar />
           </header>
           <Routes>
-            {routes.map((route) => <Route path={route.path} element={<route.element />} />)}
+            {routes.map((route, index) => <Route key={index} path={route.path} element={<route.element />} />)}
           </Routes>
         </Router>
     </>
