@@ -21,11 +21,13 @@ const Card: React.FC<CardProps> = ({ objectToDisplay }): React.ReactElement => {
               : "Something else"}
           </h2>
           <p>
-            {properties.map(([key, value]) => (
-              <div key={key}>
-                <strong>{key}</strong>: {value}
-              </div>
-            ))}
+            {properties.map(([key, value]) =>
+              typeof value === "string" && !value.includes("http") &&  (
+                <div key={key}>
+                  <strong>{key}</strong>: {value}
+                </div>
+              )
+            )}
           </p>
         </div>
       </div>

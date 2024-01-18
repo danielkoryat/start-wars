@@ -4,10 +4,8 @@
   border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
-  width: calc(33.333% - 20px); /* Fixed width for three cards per row */
-  margin: 10px; /* Margin around cards */
+  padding: 10px;
 }
-
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
@@ -19,11 +17,14 @@
   color: var(--card-header-color, #fff);
   padding: 1rem;
   font-size: 1.5rem;
+  border-radius: 0.5rem 
 }
 
 .card p {
   margin: 0.5rem 1rem;
   text-align: left;
+  flex-grow: 1;
+  
 }
 
 @media (prefers-color-scheme: light) {
