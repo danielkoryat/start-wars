@@ -1,5 +1,5 @@
 import Home from "./pages/Home/Home";
-import Characters from "./pages/Characters/Characters";
+import DataPage from "./pages/DataPage/DataPage";
 import SearchResultsPage from "./pages/search/SearchResoltsPage";
 
 const routes = [
@@ -8,8 +8,16 @@ const routes = [
     element:Home ,
   },
   {
-    path: "/characters",
-    element: Characters ,
+    path: "/people",
+    element: DataPage ,
+  },
+  {
+    path: "/planets",
+    element: DataPage ,
+  },
+  {
+    path: "/films",
+    element: DataPage ,
   },
   {
     path: "/search",

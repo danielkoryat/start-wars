@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from "react";
-import "./Characters.css";
+import "./DataPage.css"
 import useFetch from "../../hooks/useFetch";
-import { API_ENDPOINTS } from "../../api/apiEndpoins";
-import Character from "../../types/charcterType";
 import ErrorMessage from "../../componants/shared/ErrorMessage ";
 import CardContainer from "../../componants/shared/CardsContainer/CardsContainer";
+import { useLocation } from "react-router-dom";
+import StarWarsObject from "../../types/starWarsObject";
 
+const DataPage: React.FC = (): React.ReactElement => {
+  const location = useLocation();
+  const page = location.pathname.slice(1)
+  const [characters, setCharacters] = useState<StarWarsObject[]>([]);
+  const { data, loading, error } = useFetch<StarWarsObject>(`/${page}/`);
 
-const CharactersPage: React.FC = (): React.ReactElement => {
-  const {
-    data,
-    loading,
-    error,
-  } = useFetch<Character>(API_ENDPOINTS.CHARACTER);
-
-  const characters = data?.results;
+  useEffect(() => {
+    if (data) {
+      setCharacters(data.results);
+    }
+  }, [data]);
 
   return (
     <div>
       <div>
-        <h1>Characters</h1>
+        <h1>{page[0].toUpperCase() + page.slice(1)}</h1>
         <div className="card-list">
           {loading ? (
             <p>Loading...</p>
@@ -34,4 +36,4 @@ const CharactersPage: React.FC = (): React.ReactElement => {
   );
 };
 
-export default CharactersPage;
+export default DataPage;

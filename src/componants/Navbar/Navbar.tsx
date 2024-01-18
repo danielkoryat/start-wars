@@ -15,7 +15,7 @@ const Navbar: React.FC = (): React.ReactElement => {
 
   const routes = [
     { lable: "Home", path: "/" },
-    { lable: "Characters", path: "/characters" },
+    { lable: "People", path: "/people" },
     { lable: "Planets", path: "/planets" },
     { lable: "Films", path: "/films" },
   ];
