@@ -1,3 +1,4 @@
+import StarWarsObject from "./starWarsObject";
 type Film = {
     title: string;
     episode_id: number;
@@ -14,3 +15,8 @@ type Film = {
     edited: Date; 
     url: string;
   };
+
+  export default Film
+
+  
+

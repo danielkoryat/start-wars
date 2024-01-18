@@ -27,11 +27,13 @@ const Searchbar = () => {
                 type="search"
                 placeholder="Search..."
                 value={search}
+                required
                 onChange={(e) => setSearch(e.target.value)}
             />
             <select
                 className="searchbar__select"
                 value={select}
+                required
                 onChange={(e) => setSelect(e.target.value)}
             >
                 <option value="" disabled>Select an option</option>

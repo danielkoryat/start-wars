@@ -18,3 +18,5 @@ type Starship = {
     created: string; // The ISO 8601 date format of the time that this resource was created.
     edited: string; // The ISO 8601 date format of the time that this resource was edited.
   };
+
+  export default Starship

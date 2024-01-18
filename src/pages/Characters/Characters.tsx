@@ -4,12 +4,12 @@ import useFetch from "../../hooks/useFetch";
 import { API_ENDPOINTS } from "../../api/apiEndpoins";
 import Character from "../../types/charcterType";
 import ErrorMessage from "../../componants/shared/ErrorMessage ";
-
+import CardContainer from "../../componants/shared/CardsContainer/CardsContainer";
 
 
 const CharactersPage: React.FC = (): React.ReactElement => {
   const {
-    data = { results: [] },
+    data,
     loading,
     error,
   } = useFetch<Character>(API_ENDPOINTS.CHARACTER);
@@ -20,39 +20,13 @@ const CharactersPage: React.FC = (): React.ReactElement => {
     <div>
       <div>
         <h1>Characters</h1>
-        <div className="character-list">
+        <div className="card-list">
           {loading ? (
             <p>Loading...</p>
           ) : error ? (
             <ErrorMessage message="Something went wrong" />
           ) : (
-            characters?.map((character, index) => (
-              <div className="character-card" key={index}>
-                <h2>{character.name}</h2>
-                <p>
-                  <strong>Birth Year:</strong> {character.birth_year}
-                </p>
-                <p>
-                  <strong>Gender:</strong> {character.gender}
-                </p>
-                <p>
-                  <strong>Height:</strong> {character.height} cm
-                </p>
-                <p>
-                  <strong>Mass:</strong> {character.mass} kg
-                </p>
-                <p>
-                  <strong>Hair Color:</strong> {character.hair_color}
-                </p>
-                <p>
-                  <strong>Eye Color:</strong> {character.eye_color}
-                </p>
-                <p>
-                  <strong>Skin Color:</strong> {character.skin_color}
-                </p>
-                {/* More character properties can be added here */}
-              </div>
-            ))
+            <CardContainer objectsToDispaly={characters!} />
           )}
         </div>
       </div>

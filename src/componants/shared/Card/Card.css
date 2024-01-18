@@ -1,0 +1,36 @@
+.card {
+  background-color: var(--card-background-color, #333);
+  color: var(--card-color, #fff);
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  width: calc(33.333% - 20px); /* Fixed width for three cards per row */
+  margin: 10px; /* Margin around cards */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card h2 {
+  margin: 0;
+  background-color: var(--card-header-background-color, #646cff);
+  color: var(--card-header-color, #fff);
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0.5rem 1rem;
+  text-align: left;
+}
+
+@media (prefers-color-scheme: light) {
+  .card {
+    --card-background-color: #fff;
+    --card-color: #333;
+    --card-header-background-color: #ececec;
+    --card-header-color: #333;
+  }
+}
