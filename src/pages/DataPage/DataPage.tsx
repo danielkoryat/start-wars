@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./DataPage.css"
+import "./DataPage.css";
 import useFetch from "../../hooks/useFetch";
 import ErrorMessage from "../../componants/shared/ErrorMessage ";
 import CardContainer from "../../componants/shared/CardsContainer/CardsContainer";
@@ -8,9 +8,12 @@ import StarWarsObject from "../../types/starWarsObject";
 
 const DataPage: React.FC = (): React.ReactElement => {
   const location = useLocation();
-  const page = location.pathname.slice(1)
+  const page = location.pathname.slice(1);
   const [characters, setCharacters] = useState<StarWarsObject[]>([]);
-  const { data, loading, error } = useFetch<StarWarsObject>(`/${page}/`);
+  const [fechingUrl,setFechingUrl] = useState<string | undefined>("");
+  const { data, loading, error } = useFetch<StarWarsObject>(fechingUrl ? fechingUrl : `/${page}/`);
+  const isNext = data?.next ? true : false
+  const isPrevious = data?.previous ? true : false
 
   useEffect(() => {
     if (data) {
@@ -24,11 +27,18 @@ const DataPage: React.FC = (): React.ReactElement => {
         <h1>{page[0].toUpperCase() + page.slice(1)}</h1>
         <div className="card-list">
           {loading ? (
-            <p>Loading...</p>
+            <p className="loading">Loading...</p>
           ) : error ? (
             <ErrorMessage message="Something went wrong" />
           ) : (
-            <CardContainer objectsToDispaly={characters!} />
+            <>
+            {data?.count && <p>{data?.count} results found</p>}
+              <CardContainer objectsToDispaly={characters!} />
+              <div className="pagination">
+                <button disabled={!isPrevious} onClick={() => setFechingUrl(data?.previous)}>Previous</button>
+                <button disabled={!isNext} onClick={() => setFechingUrl(data?.next)}>Next</button>
+              </div>
+            </>
           )}
         </div>
       </div>
